@@ -1,42 +1,31 @@
 class Docking_Station
 
-  attr_reader :docked_bike
+def initialize
+  @number_of_bike = 1
+end
+
+attr_reader :number_of_bike
 
 def release_bike
-  if @docked_bike == nil
-    raise "No bikes available"
-  else
+  if @number_of_bike > 0
     Bike.new
+    @number_of_bike -= 1
+  else
+    raise "No bikes available"
   end
 end
 
-def dock(bike)
-  @docked_bike = bike
+def dock
+  if @number_of_bike == 0
+    @number_of_bike += 1
+  else
+    raise "Docking Station is full"
+  end
 end
-
-#def capacity
-#  @capacity = 1
-#end
-
-#def docked_bike
-#  @docked_bike
-#end
-
-# attr_reader :bike
-
-#def bike
-#  @bike
-#end
-
-#def receive_bike
-#  Bike.new
-#end
-
 end
-
 
   class Bike
     def working?
-      true
+      return true
     end
 end
